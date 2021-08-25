@@ -1,5 +1,9 @@
 package main;
 
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+
+import DrawingTemp.DrawingTemp;
 import display.Display;
 
 public class Game implements Runnable{
@@ -11,6 +15,8 @@ public class Game implements Runnable{
 	
 	private Thread thread;
 	private Display display;
+	private BufferStrategy bs;
+	private Graphics g;
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -84,6 +90,16 @@ public class Game implements Runnable{
 			System.exit(0);
 	}
 	
-	private void render() {}
-
+	private void render() {
+		bs = display.getCanvas().getBufferStrategy();
+		if(bs == null) {
+			display.getCanvas().createBufferStrategy(3);
+			return;
+		}
+		g = bs.getDrawGraphics();
+		g.clearRect(0, 0, width, height);
+		DrawingTemp.render(g);
+		bs.show();
+		g.dispose();
+	}
 }

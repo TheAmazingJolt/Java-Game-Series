@@ -3,8 +3,8 @@ package main;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import DrawingTemp.DrawingTemp;
 import display.Display;
+import gfx.Assets;
 
 public class Game implements Runnable{
 
@@ -80,6 +80,7 @@ public class Game implements Runnable{
 	
 	private void init() {
 		display = new Display(title, width, height);
+		Assets.init();
 	}
 	
 	private void tick() {
@@ -98,7 +99,13 @@ public class Game implements Runnable{
 		}
 		g = bs.getDrawGraphics();
 		g.clearRect(0, 0, width, height);
-		DrawingTemp.render(g);
+		
+		g.drawImage(Assets.test, 20, 20, 64, 64, null);
+		g.drawImage(Assets.testSheetImg[0], 200, 200, 64, 64, null);
+		g.drawImage(Assets.testSheetImg[1], 150, 300, 64, 64, null);
+		g.drawImage(Assets.testSheetImg[2], 300, 140, 64, 64, null);
+		g.drawImage(Assets.testSheetImg[3], 500, 0, 64, 64, null);
+		
 		bs.show();
 		g.dispose();
 	}

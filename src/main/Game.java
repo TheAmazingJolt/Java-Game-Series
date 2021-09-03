@@ -1,10 +1,12 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import display.Display;
 import gfx.Assets;
+import gfx.Text;
 
 public class Game implements Runnable{
 
@@ -105,6 +107,7 @@ public class Game implements Runnable{
 		g.drawImage(Assets.testSheetImg[1], 150, 300, 64, 64, null);
 		g.drawImage(Assets.testSheetImg[2], 300, 140, 64, 64, null);
 		g.drawImage(Assets.testSheetImg[3], 500, 0, 64, 64, null);
+		Text.drawString(g, "Hello World!", 500, 500, true, Color.BLUE, Assets.font30);
 		
 		bs.show();
 		g.dispose();
